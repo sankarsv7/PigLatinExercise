@@ -1,0 +1,28 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+ <form (submit)="pigLatinTranslate(text.value)">
+  <input #text [(ngModel)]="inputValue" [ngModelOptions]="{standalone: true}" autofocus placeholder="Enter text for translate">
+  <input type="submit" [disabled]="!inputValue.length" value="Submit" />
+
+  <div *ngIf="pigLatingHistory.length">   
+    <br/>
+    <span> Displays upto 10 recent translations</span>
+    <br/><br/>
+    <table>
+      <thead>
+        <tr>
+          <th>Before Translate</th>
+          <th>After Translated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sentence of pigLatingHistory.slice().reverse(); let i = index; trackBy:index">
+          <td>{{sentence.beforeTranslation}} </td> <td>{{sentence.afterTranslation}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+</div>
